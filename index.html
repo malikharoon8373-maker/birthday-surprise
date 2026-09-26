@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Happy Birthday 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="sparkleLayer"></div>
+<button id="muteBtn" class="mute-btn" aria-label="Toggle music">🔇</button>
+<audio id="bgMusic" src="audio/birthday-music.mp3" loop preload="auto"></audio>
+
+<!-- ============================================================
+     SCENE 0 — PASSWORD + PHOTO FRAME
+============================================================ -->
+<section id="scene0" class="scene active dark">
+  <div class="scene-inner center-col">
+
+    <!-- ===== REPLACE HER PHOTO: images/first-photo.jpg ===== -->
+    <div class="photo-frame">
+      <div class="photo-frame-glow"></div>
+      <img src="images/first-photo.JPEG" alt="Her photo">
+    </div>
+
+    <p class="eyebrow">something special is waiting for you</p>
+    <div class="dots">
+      <span class="dot" data-i="0"></span>
+      <span class="dot" data-i="1"></span>
+      <span class="dot" data-i="2"></span>
+      <span class="dot" data-i="3"></span>
+    </div>
+    <p id="wrongMsg" class="wrong-msg">that's not quite it... try again 💕</p>
+
+    <div class="keypad">
+      <button class="key" data-num="1">1</button>
+      <button class="key" data-num="2">2</button>
+      <button class="key" data-num="3">3</button>
+      <button class="key" data-num="4">4</button>
+      <button class="key" data-num="5">5</button>
+      <button class="key" data-num="6">6</button>
+      <button class="key" data-num="7">7</button>
+      <button class="key" data-num="8">8</button>
+      <button class="key" data-num="9">9</button>
+      <button class="key key-ghost" disabled></button>
+      <button class="key" data-num="0">0</button>
+      <button class="key key-back" id="backspaceBtn" aria-label="Backspace">⌫</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 1 — HEART PULL INTRO
+============================================================ -->
+<section id="scene1" class="scene light">
+  <div class="scene-inner center-col">
+    <div class="heart-pull-zone" id="heartPullZone">
+      <div class="pull-string" id="pullString"></div>
+      <div class="pull-heart" id="pullHeart">💗</div>
+    </div>
+    <p class="hint-label" id="pullHint">pull the heart down, then let go ✨</p>
+  </div>
+
+  <!-- full-bleed wish reveal, sits above scene1 once triggered -->
+  <div id="wishReveal" class="wish-reveal">
+    <p class="wish-eyebrow">make a wish...</p>
+    <h1 class="wish-title">Happy<br>Birthday</h1>
+    <p class="wish-sub">to someone worth celebrating</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 2 — TREE BLOOM
+============================================================ -->
+<section id="scene2" class="scene cream">
+  <div class="scene-inner center-col">
+
+  <div class="tree-wrap">
+
+    <!-- Tree trunk -->
+    <div class="tree-trunk">
+
+      <!-- Left branches -->
+      <div class="tree-branch branch-left"></div>
+
+      <!-- Right branches -->
+      <div class="tree-branch branch-right"></div>
+
+      <!-- Center branch -->
+      <div class="tree-branch branch-center"></div>
+
+    </div>
+
+    <!-- Heart-shaped flowers -->
+    <div id="bloomCluster" class="bloom-cluster"></div>
+
+  </div>
+    <p class="eyebrow dark-text">it's officially your day</p>
+    <!-- ===== EDIT HER NAME HERE ===== -->
+    <h1 id="nameReveal" class="script-name"></h1>
+    <!-- ===== EDIT AGE LINE HERE (leave text empty in script.js to hide) ===== -->
+    <p id="ageLine" class="age-line"></p>
+    <button id="toCakeBtn" class="pill-btn hidden">Continue</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 3 — CAKE
+============================================================ -->
+<section id="scene3" class="scene night">
+  <div class="scene-inner center-col">
+    <p class="eyebrow">first things first 🎉</p>
+
+    <div class="cake-stage">
+      <div id="cakeBake" class="cake-bake"></div>
+      <div id="cakeReady" class="cake-ready hidden">
+        <div class="candle"><span class="flame" id="candleFlame">🔥</span></div>
+        <div class="cake-layer top"></div>
+        <div class="cake-layer bottom"></div>
+      </div>
+    </div>
+
+    <p id="bakingLabel" class="hint-label">baking something sweet...</p>
+    <h2 id="cakeName" class="script-name small hidden"></h2>
+    <p id="makeWishLabel" class="hint-label hidden">tap the candle to make a wish 🕯️</p>
+
+    <button id="toBalloonsBtn" class="pill-btn hidden">Continue</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 4 — POP THE BALLOONS
+============================================================ -->
+<section id="scene4" class="scene night">
+  <div class="scene-inner center-col">
+    <p class="eyebrow">pop the balloons 🎈</p>
+    <p class="hint-label">each one holds a reason you're loved</p>
+
+    <div id="balloonField" class="balloon-field"></div>
+    <div id="reasonList" class="reason-list"></div>
+
+    <button id="toMemoryBtn" class="pill-btn hidden">Continue</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 5 — MEMORY LANE (swipe carousel)
+============================================================ -->
+<section id="scene5" class="scene night">
+  <div class="scene-inner center-col">
+    <p class="eyebrow">a walk down memory lane</p>
+    <p class="hint-label">swipe through 📸</p>
+
+    <div class="carousel-wrap">
+      <div id="carouselTrack" class="carousel-track">
+        <!-- ===== ADD / REPLACE MEMORY PHOTOS HERE ===== -->
+        <figure class="polaroid-card">
+          <img src="images/memory1.JFIF" alt="Memory 1" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>the beginning 🤍</figcaption>
+        </figure>
+        <figure class="polaroid-card">
+          <img src="images/memory2.JFIF" alt="Memory 2" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>that trip we still talk about</figcaption>
+        </figure>
+        <figure class="polaroid-card">
+          <img src="images/memory3.JFIF" alt="Memory 3" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>your favorite laugh</figcaption>
+        </figure>
+        <figure class="polaroid-card">
+          <img src="images/memory4.JFIF" alt="Memory 4" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>us, always</figcaption>
+        </figure>
+        <figure class="polaroid-card">
+          <img src="images/memory5.JFIF" alt="Memory 5" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>a quiet good day</figcaption>
+        </figure>
+        <figure class="polaroid-card">
+          <img src="images/memory6.JFIF" alt="Memory 6" onerror="this.parentElement.classList.add('img-missing')">
+          <figcaption>more memories coming ❤️</figcaption>
+        </figure>
+        <!-- ===== END MEMORY PHOTOS ===== -->
+      </div>
+      <div id="carouselDots" class="carousel-dots"></div>
+    </div>
+
+    <button id="toEnvelopeBtn" class="pill-btn">Keep going →</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 6 — ENVELOPE LETTER
+============================================================ -->
+<section id="scene6" class="scene night">
+  <div class="scene-inner center-col">
+    <!-- ===== EDIT HER NAME HERE ===== -->
+    <p id="envelopeLead" class="eyebrow">one last thing...</p>
+
+    <div id="envelope" class="envelope-v2">
+      <div class="env-back"></div>
+      <div class="env-inner-card">💌</div>
+      <div class="env-flap"></div>
+    </div>
+    <p id="envelopeHint" class="hint-label">tap to open</p>
+
+    <div id="letterCard" class="letter-card hidden">
+      <div class="letter-scroll">
+        <!-- ===== EDIT SALUTATION / MESSAGE / SIGNATURE HERE ===== -->
+        <p id="letterSalutation" class="letter-salutation"></p>
+        <p id="letterBody"></p>
+        <p id="letterSign" class="letter-sign"></p>
+      </div>
+      <button id="toFinalBtn" class="pill-btn">Continue</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENE 7 — FINAL
+============================================================ -->
+<section id="scene7" class="scene night">
+  <div id="finalConfetti" class="final-confetti"></div>
+  <div class="scene-inner center-col">
+    <h1 class="final-title">HAPPY<br>BIRTHDAY</h1>
+    <!-- ===== EDIT HER NAME HERE ===== -->
+    <h2 id="finalName" class="script-name final-script"></h2>
+    <p class="hint-label">made with love, just for you 💛</p>
+
+    <div class="final-btn-row">
+      <button id="replayBtn" class="pill-btn ghost">Replay ↻</button>
+      <button id="sendBtn" class="pill-btn">Send it 🎉</button>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
